@@ -33,9 +33,17 @@ export default class TextEditor extends Component {
     this.setState({value})
   }
 
+  onKeyDown = (e, change) => {
+    console.log(e.key)
+  }
+
   render() {
     return (
-      <Editor value={this.state.value} onChange={this.onChange} />
+      <Editor 
+      value={this.state.value} 
+      onChange={this.onChange} 
+      onKeyDown={this.onKeyDOwn} 
+      />
     )
   }
 }
