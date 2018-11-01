@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Editor } from 'slate-react'
-import { Value } from 'slate'
+import React, { Component } from 'react';
+import { Editor } from 'slate-react';
+import { Value } from 'slate';
 
 export default class TextEditor extends Component {
 
@@ -14,8 +14,7 @@ export default class TextEditor extends Component {
 
     render() {
         return (
-            <Editor value={this.state.value}
-            onChange={this.onChange} />
+            <Editor value={this.state.value} onChange={this.onChange} />
         )
     }
 }
