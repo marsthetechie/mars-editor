@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React, { Component } from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
@@ -42,7 +43,7 @@ export default class TextEditor extends Component {
     switch (e.key) {
 
       case 'b': {
-        change.addMark('bold')
+        change.toggleMark('bold')
         return true
       }
     }
