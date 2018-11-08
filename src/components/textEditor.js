@@ -32,10 +32,21 @@ export default class TextEditor extends Component {
   onChange = ({value}) => {
     this.setState({value})
   }
+
+  onKeyDown = (event, editor, next) => {
+    if (event.key !== '&') return next()
+    event.preventDefault()
+    editor.insertText('and')
+    return true
+  }
   
   render() {
     return (
-      <Editor value={this.state.value} onChange={this.onChange} />
+      <Editor 
+      value={this.state.value} 
+      onChange={this.onChange} 
+      onKeyDown={this.onKeyDown}
+      />
     );
   }
 }
