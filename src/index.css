@@ -10,6 +10,12 @@ body {
   background-color: #a9b8fa;
 }
 
+.code {
+  padding: 0.1px;
+  width: 100%;
+  background-color: #ecececd0;
+}
+
 .App {
   color: #111111;
   max-width: 740px;

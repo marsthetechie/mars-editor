@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 
+import { CodeNode } from './index';
+
 const initialValue = Value.fromJSON({
   document: {
     nodes: [
@@ -34,10 +36,24 @@ export default class TextEditor extends Component {
   }
 
   onKeyDown = (event, editor, next) => {
-    if (event.key !== '&') return next()
-    event.preventDefault()
-    editor.insertText('and')
-    return true
+    if (event.key === '&') {
+      event.preventDefault();
+      editor.insertText('and');
+    } else if (event.ctrlKey && event.key === '`') {
+      event.preventDefault();
+      editor.setBlocks('code');
+    } else {
+      return next()
+    }
+  }
+
+  renderNode = (props, editor, next) => {
+    switch (props.node.type) {
+      case 'code':
+        return <CodeNode {...props} />
+      default:
+        return next()
+    }
   }
   
   render() {
@@ -45,7 +61,8 @@ export default class TextEditor extends Component {
       <Editor 
       value={this.state.value} 
       onChange={this.onChange} 
-      onKeyDown={this.onKeyDown}
+      onKeyDown={this.onKeyDown} 
+      renderNode={this.renderNode}
       />
     );
   }
