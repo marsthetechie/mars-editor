@@ -11,9 +11,12 @@ body {
 }
 
 .code {
-  padding: 0.1px;
   width: 100%;
   background-color: #ecececd0;
+}
+
+code {
+  padding: 10px;
 }
 
 .App {
