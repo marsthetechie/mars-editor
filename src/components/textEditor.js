@@ -45,7 +45,10 @@ export default class TextEditor extends Component {
     } else if (event.ctrlKey && event.key === '`') {
 
       event.preventDefault();
-      editor.setBlocks('code');
+      const isCode = editor.value.blocks.some(block => block.type === 'code');
+
+      editor.setBlocks(isCode ? 'paragraph' : 'code');
+
 
     } else {
       return next()
