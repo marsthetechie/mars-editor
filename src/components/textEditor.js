@@ -36,21 +36,29 @@ export default class TextEditor extends Component {
   }
 
   onKeyDown = (event, editor, next) => {
+
     if (event.key === '&') {
+
       event.preventDefault();
       editor.insertText('and');
+
     } else if (event.ctrlKey && event.key === '`') {
+
       event.preventDefault();
       editor.setBlocks('code');
+
     } else {
       return next()
     }
   }
 
   renderNode = (props, editor, next) => {
+
     switch (props.node.type) {
+
       case 'code':
         return <CodeNode {...props} />
+        
       default:
         return next()
     }
