@@ -9,5 +9,5 @@ To use, just delete dummy text and write away!
 ## Features
 ### Shortcuts
 
- - `&` to automatically insert "and".
+ - `ctrl` + `&` to automatically insert "and".
  - `ctrl` + `` ` `` to insert a block for writing code.

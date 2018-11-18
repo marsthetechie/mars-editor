@@ -37,7 +37,7 @@ export default class TextEditor extends Component {
 
   onKeyDown = (event, editor, next) => {
 
-    if (event.key === '&') {
+    if (event.ctrlKey && event.key === '&') {
 
       event.preventDefault();
       editor.insertText('and');
