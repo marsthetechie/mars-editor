@@ -11,3 +11,4 @@ To use, just delete dummy text and write away!
 
  - `ctrl` + `&` to automatically insert "and".
  - `ctrl` + `` ` `` to insert a block for writing code.
+ - `ctrl` + `b` to turn the text bold.
