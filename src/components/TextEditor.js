@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 
-import { CodeNode } from './index';
+import { CodeNode, BoldMark } from './index';
 
 const initialValue = Value.fromJSON({
   document: {
@@ -37,21 +37,23 @@ export default class TextEditor extends Component {
 
   onKeyDown = (event, editor, next) => {
 
-    if (event.ctrlKey && event.key === '&') {
+    if (!event.ctrlKey) return next();
 
-      event.preventDefault();
-      editor.insertText('and');
-
-    } else if (event.ctrlKey && event.key === '`') {
-
-      event.preventDefault();
-      const isCode = editor.value.blocks.some(block => block.type === 'code');
-
-      editor.setBlocks(isCode ? 'paragraph' : 'code');
-
-
-    } else {
-      return next()
+    switch (event.key) {
+      case '&':
+        event.preventDefault();
+        editor.insertText('and');
+        break;
+      case '`':
+        event.preventDefault();
+        const isCode = editor.value.blocks.some(block => block.type === 'code');editor.setBlocks(isCode ? 'paragraph' : 'code');
+        break;
+      case 'b':
+        event.preventDefault();
+        editor.addMark('bold');
+        break;
+      default:
+        return next()
     }
   }
 
@@ -66,6 +68,18 @@ export default class TextEditor extends Component {
         return next()
     }
   }
+
+  renderMark = (props, editor, next) => {
+
+    switch (props.mark.type) {
+      case 'bold':
+        return <BoldMark {...props} />
+        
+      default:
+        return next()
+
+    }
+  }
   
   render() {
     return (
@@ -73,7 +87,8 @@ export default class TextEditor extends Component {
       value={this.state.value} 
       onChange={this.onChange} 
       onKeyDown={this.onKeyDown} 
-      renderNode={this.renderNode}
+      renderNode={this.renderNode} 
+      renderMark={this.renderMark}
       />
     );
   }
