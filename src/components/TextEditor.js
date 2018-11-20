@@ -50,7 +50,7 @@ export default class TextEditor extends Component {
         break;
       case 'b':
         event.preventDefault();
-        editor.addMark('bold');
+        editor.toggleMark('bold');
         break;
       default:
         return next()
